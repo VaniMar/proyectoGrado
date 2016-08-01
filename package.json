@@ -1,0 +1,20 @@
+{
+  "name": "plugin_gitlab_jenkins_jat",
+  "version": "1.0.0",
+  "description": "project grade at university",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+    "deploy": "gcloud app deploy  --project proyecto-grado-1470068921722"
+  },
+  "author": "vania marisela catorceno carballo",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.5.7",
+    "morgan": "^1.7.0"
+  }
+}
