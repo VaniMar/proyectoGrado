@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');				// Utilizamos express
 var morgan = require('morgan');
 var mongoose = require('mongoose'); 				// mongoose para mongodb
-var port  	 = process.env.PORT || 3000;		// Cogemos el puerto 8080
+var port  	 = Number(process.env.PORT || 3000);		// Cogemos el puerto 8080
 
 
 // Configuracion
