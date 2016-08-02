@@ -5,8 +5,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');				// Utilizamos express
 var morgan = require('morgan');
 var mongoose = require('mongoose'); 				// mongoose para mongodb
-var port  	 = process.env.PORT || 3000; 
-var ip = process.env.IP || 127.0.0.1			// Cogemos el puerto 8080
+var port  	 = process.env.PORT || 3000;		// Cogemos el puerto 8080
 
 
 // Configuracion
@@ -22,5 +21,5 @@ app.use(methodOverride());
 require('./routes/mainRoute.js')(app);
 
 // Cogemos el puerto para escuchar
-app.listen(port, ip);
-console.log("APP por el puerto " + port + ":"+ ip);
+app.listen(port);
+console.log("APP por el puerto " + port);
