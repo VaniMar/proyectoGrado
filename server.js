@@ -1,25 +1,34 @@
-// Inicialización
-var express  = require('express');
+var express  = require('express'); 
 var app      = express();
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override');				// Utilizamos express
+var methodOverride = require('method-override');
 var morgan = require('morgan');
-var mongoose = require('mongoose'); 				// mongoose para mongodb
-var port  	 = Number(process.env.PORT || 3000);		// Cogemos el puerto 8080
-
-
+var mongoose = require('mongoose'); 
+var port  	 = process.env.PORT || 3000;
 // Configuracion
-mongoose.connect('mongodb://localhost:27017/MainProject'); 	// Hacemos la conexión a la base de datos 
+var options = {
+  user: "vania",
+  pass: "asdf"
+};
+
+var mongooseConnectionString = 'mongodb://jello.modulusmongo.net:27017/Ozyb5uru';
+mongoose.connect(mongooseConnectionString, options);
+mongoose.connection.on('connected', function () {
+  console.log('Mongoose default connection open to ' + mongooseConnectionString);
+});
+
+// If the connection throws an error
+mongoose.connection.on('error', function (err) {
+  console.log('Mongoose default connection error: ' + err);
+});
 
 app.use(express.static(__dirname + '/angular')); 		
-app.use(morgan('dev')); 			// activamos el log en modo 'dev'
+app.use(morgan('dev')); 			
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(methodOverride());
+app.use(methodOverride('X-HTTP-Method-Override')); 
 
-// Cargamos los endpoints
 require('./routes/mainRoute.js')(app);
 
-// Cogemos el puerto para escuchar
 app.listen(port);
 console.log("APP por el puerto " + port);
